@@ -52,8 +52,15 @@ int* sieve(int n, int& num_primes) {
     return primes;
 }
 
-int main() {
-    int n = 100000000;
+int main(int argc, char** argv) {
+    // read n from command line
+    int n;
+    if (argc > 1) {
+        n = atoi(argv[1]);
+    } else {
+        n = 100000000;
+    }
+
 
     auto start_time = high_resolution_clock::now();
     int num_primes;

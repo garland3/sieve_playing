@@ -24,13 +24,21 @@ vector<int> sieve(int start, int end) {
     return primes;
 }
 
+// int main(int argc, char** argv) {
 int main(int argc, char** argv) {
+    // read n from command line
+    int n;
+    if (argc > 1) {
+        n = atoi(argv[1]);
+    } else {
+        n = 100000000;
+    }
+
     MPI_Init(&argc, &argv);
     int rank, size;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    int n = 100000000;
     int chunk_size = (n + size - 1) / size;
     int start = rank * chunk_size + 2;
     int end = min(start + chunk_size - 1, n);
