@@ -1,0 +1,7 @@
+/target
+a.out
+basic_sieve
+cuda_sieve
+mpi_sieve
+bin/
+rust_sieve
