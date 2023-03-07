@@ -1,3 +1,5 @@
+use std::env;
+
 fn sieve(n: usize) -> Vec<usize> {
     let mut is_prime = vec![true; n+1];
     let mut primes = Vec::new();
@@ -12,8 +14,13 @@ fn sieve(n: usize) -> Vec<usize> {
     primes
 }
 
+
 fn main() {
-    let n = 100000000;
+    let args: Vec<String> = env::args().collect();
+    let n: usize = match args.get(1) {
+        Some(arg) => arg.parse().unwrap_or(1000000),
+        None => 1000000,
+    };
     let start_time = std::time::Instant::now();
     let primes = sieve(n);
     let end_time = std::time::Instant::now();
@@ -21,4 +28,5 @@ fn main() {
     println!("Execution time: {} milliseconds", duration.as_millis());
     println!("Number of primes found: {}", primes.len());
 }
+
 // compile: rustc rust_sieve.rs -O 
