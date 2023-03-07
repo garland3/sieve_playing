@@ -11,9 +11,7 @@ echo "Running basic sieve"
 ./out/basic_sieve $n
 
 cores=$(nproc)
-echo "cores = $cores"
-export XAUTHORITY=""
-echo "Running MPI sieve"
+echo "Running MPI sieve on $cores cores"
 mpirun -np $cores ./out/mpi_sieve $n
 
 echo "Running CUDA sieve"
